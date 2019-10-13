@@ -6,13 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="JavaProFinalProject" />
+        <module name="Bankig_System_Spring" />
         <module name="banking_system" />
+        <module name="JavaProFinalProject" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Bankig_System_Spring" options="-parameters" />
       <module name="JavaProFinalProject" options="-parameters" />
       <module name="banking_system" options="-parameters" />
     </option>
