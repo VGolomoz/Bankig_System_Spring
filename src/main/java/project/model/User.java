@@ -6,6 +6,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "`user`")
 public class User {
+
+    public User() {
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
