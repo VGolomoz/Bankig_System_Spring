@@ -37,7 +37,7 @@ public class UserAccount {
     @JoinColumn (name="credit_id")
     private Credit credit;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userAccount")
+    @OneToMany(mappedBy = "userAccount")
     private List<Operation> operations;
 
     public Long getId() {
