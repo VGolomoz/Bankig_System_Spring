@@ -2,8 +2,8 @@ package project.model;
 
 import project.util.Currency;
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.Objects;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 public class UserAccount {
@@ -13,7 +13,7 @@ public class UserAccount {
     private Long id;
 
     @Column
-    private Long balance;
+    private Double balance;
 
     @Column
     @Enumerated(EnumType.STRING)
@@ -37,9 +37,8 @@ public class UserAccount {
     @JoinColumn (name="credit_id")
     private Credit credit;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn (name="operationHistory_id")
-    private OperationHistory operationHistory;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userAccount")
+    private List<Operation> operations;
 
     public Long getId() {
         return id;
@@ -49,11 +48,11 @@ public class UserAccount {
         this.id = id;
     }
 
-    public Long getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Long balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
@@ -105,50 +104,14 @@ public class UserAccount {
         this.credit = credit;
     }
 
-    public OperationHistory getOperationHistory() {
-        return operationHistory;
+    public List<Operation> getOperations() {
+        return operations;
     }
 
-    public void setOperationHistory(OperationHistory operationHistory) {
-        this.operationHistory = operationHistory;
+    public void addOperations(Operation operation) {
+        operations.add(operation);
     }
 
     public UserAccount() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserAccount that = (UserAccount) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(user, that.user) &&
-                Objects.equals(balance, that.balance) &&
-                currency == that.currency &&
-                Objects.equals(validity, that.validity) &&
-                Objects.equals(userDetails, that.userDetails) &&
-                Objects.equals(deposit, that.deposit) &&
-                Objects.equals(credit, that.credit) &&
-                Objects.equals(operationHistory, that.operationHistory);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, user, balance, currency, validity, userDetails, deposit, credit, operationHistory);
-    }
-
-    @Override
-    public String toString() {
-        return "UserAccount{" +
-                "id=" + id +
-                ", user=" + user +
-                ", balance=" + balance +
-                ", currency=" + currency +
-                ", validity=" + validity +
-                ", userDetails=" + userDetails +
-                ", deposit=" + deposit +
-                ", credit=" + credit +
-                ", operationHistory=" + operationHistory +
-                '}';
     }
 }
