@@ -1,13 +1,16 @@
 package project.model;
 
-import util.UserRole;
+
+
+import project.util.UserRole;
 
 import javax.persistence.*;
-import java.util.Objects;
+
 
 @Entity
-@Table(name = "`user`")
-public class User {
+@Table
+public class Client {
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
@@ -15,12 +18,16 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String password;
 
     @Column(unique = true, nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn (name="userAccount_id")
+    private UserAccount userAccount;
 
     public Long getId() {
         return id;
@@ -54,29 +61,14 @@ public class User {
         this.role = role;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id.equals(user.id) &&
-                email.equals(user.email) &&
-                password.equals(user.password) &&
-                role == user.role;
+    public UserAccount getUserAccount() {
+        return userAccount;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email, password, role);
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                '}';
+    public Client() {
     }
 }

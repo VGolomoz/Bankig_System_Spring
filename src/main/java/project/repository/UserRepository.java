@@ -1,8 +1,8 @@
 package project.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import project.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import project.model.Client;
 
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface UserRepository extends JpaRepository<Client, Long> {
 
 }
