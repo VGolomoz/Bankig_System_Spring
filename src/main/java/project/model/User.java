@@ -1,5 +1,7 @@
 package project.model;
 
+import util.UserRole;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -16,10 +18,17 @@ public class User {
     @Column(unique = true, nullable = false)
     private String password;
 
+    @Column(unique = true, nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
+
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;
@@ -37,6 +46,14 @@ public class User {
         this.password = password;
     }
 
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,11 +61,22 @@ public class User {
         User user = (User) o;
         return id.equals(user.id) &&
                 email.equals(user.email) &&
-                password.equals(user.password);
+                password.equals(user.password) &&
+                role == user.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password);
+        return Objects.hash(id, email, password, role);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
     }
 }
