@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.model.Client;
 import project.repository.UserRepository;
+import project.util.UserRole;
 
 @Controller
 public class UserController {
@@ -15,6 +16,12 @@ public class UserController {
 
 //    public UserController(UserRepository userRepository) {
 //        this.userRepository = userRepository;
+//    }
+
+    //    @GetMapping("/")
+//    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
+//        model.addAttribute("name", name);
+//        return "index";
 //    }
 
 
@@ -40,12 +47,13 @@ public class UserController {
 
     @GetMapping("/add")
     public String add(Model model) {
-        Client u = new Client();
-        u.setEmail("myEmail");
-        u.setPassword("myPassword");
-        System.out.println(u);
-        userRepository.save(u);
-        model.addAttribute("user", u);
+        Client c = new Client();
+        c.setEmail("myEmail");
+        c.setPassword("myPassword");
+        c.setRole(UserRole.USER);
+        System.out.println(c);
+        userRepository.save(c);
+        model.addAttribute("client", c);
         return "greeting";
     }
 }

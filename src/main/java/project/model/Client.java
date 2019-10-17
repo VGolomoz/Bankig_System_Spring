@@ -21,7 +21,7 @@ public class Client {
     @Column(nullable = false)
     private String password;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
