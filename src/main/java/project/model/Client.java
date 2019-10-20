@@ -26,8 +26,8 @@ public class Client {
     private UserRole role;
 
     @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn (name="userAccount_id")
-    private UserAccount userAccount;
+    @JoinColumn (name="clientAccount_id")
+    private ClientAccount clientAccount;
 
     public Long getId() {
         return id;
@@ -61,12 +61,12 @@ public class Client {
         this.role = role;
     }
 
-    public UserAccount getUserAccount() {
-        return userAccount;
+    public ClientAccount getClientAccount() {
+        return clientAccount;
     }
 
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public void setClientAccount(ClientAccount clientAccount) {
+        this.clientAccount = clientAccount;
     }
 
     public Client() {

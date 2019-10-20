@@ -43,7 +43,7 @@
 <!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.security</groupId>-->
-<!--            <artifactId>spring-security-project.config</artifactId>-->
+<!--            <artifactId>spring-security-config</artifactId>-->
 <!--            <version>5.1.4.RELEASE</version>-->
 <!--        </dependency>-->
         <dependency>

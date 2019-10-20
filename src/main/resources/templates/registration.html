@@ -11,10 +11,27 @@
 <div th:if="${param.logout}">
     You have been logged out.
 </div>
+<div th:if="${param.message}">
+    There is message.
+</div>
 Registration
 <form th:action="@{/registration}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Email: <input type="email" name="email"/> </label></div>
     <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><label> Name: <input type="text" name="name"/> </label></div>
+    <div><label> Surname: <input type="text" name="surname"/> </label></div>
+    <div><label> Mobile Phone: <input type="text" name="mobilePhone"/> </label></div>
+    <div><label> Birthday: <input type="date" name="birthday"/> </label></div>
+
+    Choose currency of your main account
+    <input class="w3-radio" type="radio" name="currency" value="UAH" checked>
+    <label>UAH</label>
+
+    <input class="w3-radio" type="radio" name="currency" value="USD">
+    <label>USD</label>
+
+    <input class="w3-radio" type="radio" name="currency" value="EUR">
+    <label>EUR</label>
     <div><input type="submit" value="Sign In"/></div>
 </form>
 </body>

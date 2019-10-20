@@ -1,7 +1,7 @@
 package project.util;
 
 public enum UserRole {
-    ADMIN, MANAGER, USER;
+    ADMIN, MANAGER, CLIENT;
 
     @Override
     public String toString() {

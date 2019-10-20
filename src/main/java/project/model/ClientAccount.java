@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class UserAccount {
+public class ClientAccount {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -22,12 +22,12 @@ public class UserAccount {
     @Column(nullable = false)
     private Date validity;
 
-    @OneToOne(mappedBy = "userAccount")
+    @OneToOne(mappedBy = "clientAccount")
     private Client client;
 
     @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn (name="userDetails_id")
-    private UserDetails userDetails;
+    @JoinColumn (name="clientDetails_id")
+    private ClientDetails clientDetails;
 
     @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     @JoinColumn (name="deposit_id")
@@ -37,7 +37,7 @@ public class UserAccount {
     @JoinColumn (name="credit_id")
     private Credit credit;
 
-    @OneToMany(mappedBy = "userAccount")
+    @OneToMany(mappedBy = "clientAccount")
     private List<Operation> operations;
 
     public Long getId() {
@@ -80,12 +80,12 @@ public class UserAccount {
         this.client = client;
     }
 
-    public UserDetails getUserDetails() {
-        return userDetails;
+    public ClientDetails getClientDetails() {
+        return clientDetails;
     }
 
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
+    public void setClientDetails(ClientDetails clientDetails) {
+        this.clientDetails = clientDetails;
     }
 
     public Deposit getDeposit() {
@@ -112,6 +112,6 @@ public class UserAccount {
         operations.add(operation);
     }
 
-    public UserAccount() {
+    public ClientAccount() {
     }
 }

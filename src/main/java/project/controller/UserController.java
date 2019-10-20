@@ -5,14 +5,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.model.Client;
-import project.repository.UserRepository;
+import project.repository.ClientRepository;
 import project.util.UserRole;
 
 @Controller
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private ClientRepository userRepository;
 
 //    public UserController(UserRepository userRepository) {
 //        this.userRepository = userRepository;
@@ -50,7 +50,7 @@ public class UserController {
         Client c = new Client();
         c.setEmail("myEmail");
         c.setPassword("myPassword");
-        c.setRole(UserRole.USER);
+        c.setRole(UserRole.CLIENT);
         System.out.println(c);
         userRepository.save(c);
         model.addAttribute("client", c);

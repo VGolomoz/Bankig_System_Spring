@@ -1,10 +1,9 @@
 package project.model;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-public class UserDetails {
+public class ClientDetails {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -20,13 +19,13 @@ public class UserDetails {
     private String mobilePhone;
 
     @Column(nullable = false)
-    private String mail;
+    private String email;
 
     @Column(nullable = false)
-    private Date birthday;
+    private String birthday;
 
-    @OneToOne(mappedBy = "userDetails")
-    private UserAccount userAccount;
+    @OneToOne(mappedBy = "clientDetails")
+    private ClientAccount clientAccount;
 
     public Long getId() {
         return id;
@@ -60,30 +59,30 @@ public class UserDetails {
         this.mobilePhone = mobilePhone;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
-    public UserAccount getUserAccount() {
-        return userAccount;
+    public ClientAccount getClientAccount() {
+        return clientAccount;
     }
 
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public void setClientAccount(ClientAccount clientAccount) {
+        this.clientAccount = clientAccount;
     }
 
-    public UserDetails() {
+    public ClientDetails() {
     }
 }

@@ -26,7 +26,7 @@ public class Deposit {
     private Date term;
 
     @OneToOne(mappedBy = "deposit")
-    private UserAccount userAccount;
+    private ClientAccount clientAccount;
 
     public Long getId() {
         return id;
@@ -68,12 +68,12 @@ public class Deposit {
         this.term = term;
     }
 
-    public UserAccount getUserAccount() {
-        return userAccount;
+    public ClientAccount getClientAccount() {
+        return clientAccount;
     }
 
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public void setClientAccount(ClientAccount clientAccount) {
+        this.clientAccount = clientAccount;
     }
 
     public Deposit() {
