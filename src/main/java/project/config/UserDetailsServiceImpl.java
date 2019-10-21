@@ -8,25 +8,28 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import project.model.Client;
+import project.service.ClientService;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
     @Autowired
     private ClientService clientService;
 
     @Override
-    public UserDetails loadUserByUsername(String login)
+    public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
-        CustomUser customUser = userService.findByLogin(login);
-        if (customUser == null)
-            throw new UsernameNotFoundException(login + " not found");
+        Client client = clientService.findByEmail(email);
+        if (client == null)
+            throw new UsernameNotFoundException(email + " not found");
 
         Set<GrantedAuthority> roles = new HashSet<>();
-        roles.add(new SimpleGrantedAuthority(customUser.getRole().toString()));
+        roles.add(new SimpleGrantedAuthority(client.getRole().toString()));
 
-        return new User(customUser.getLogin(), customUser.getPassword(), roles);
+        return new User(client.getEmail(), client.getPassword(), roles);
     }
 }
