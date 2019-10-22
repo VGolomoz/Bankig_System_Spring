@@ -45,7 +45,7 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/add")
+    @GetMapping("/client")
     public String add(Model model) {
         Client c = new Client();
         c.setEmail("myEmail");
@@ -54,6 +54,6 @@ public class UserController {
         System.out.println(c);
         userRepository.save(c);
         model.addAttribute("client", c);
-        return "greeting";
+        return "client";
     }
 }

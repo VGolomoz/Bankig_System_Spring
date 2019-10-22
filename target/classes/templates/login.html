@@ -2,21 +2,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example </title>
+    <title>Banking system</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body>
-<div th:if="${param.error}">
-    Invalid username and password.
+<body class="w3-light-grey">
+<!-- header -->
+<div class="w3-container w3-blue-grey w3-opacity w3-right-align">
+    <h1>Banking System</h1>
 </div>
-<div th:if="${param.logout}">
+<div th:if="${param.error}" class="w3-panel w3-red w3-display-container w3-card-4 w3-round">
+<span onclick="this.parentElement.style.display='none'"
+      class="w3-button w3-margin-right w3-round-large w3-hover-border-grey">×</span>
+Invalid username and password.
+</div>
+<div th:if="${param.logout}" class="w3-panel w3-green w3-display-container w3-card-4 w3-round">
+<span onclick="this.parentElement.style.display='none'"
+      class="w3-button w3-margin-right w3-round-large w3-hover-border-grey">×</span>
     You have been logged out.
 </div>
-Login
-<form th:action="@{/login}" method="post">
-    <div><label> Email: <input type="text" name="email"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
+<form th:action="@{/login}" method="post" class="w3-selection w3-light-grey w3-padding">
+    <div><label> Email: <input type="text" name="email" class="w3-input w3-animate-input w3-border w3-round-large"
+                               style="width:30%"><br/> </label></div>
+    <div><label> Password: <input type="password" name="password"
+                                  class="w3-input w3-animate-input w3-border w3-round-large" style="width:30%"><br/>
+    </label></div>
+    <div><input type="submit" value="Sign In" class="w3-btn w3-green w3-round-large w3-margin-bottom"/></div>
 </form>
-<a href="/registration">Registration</a>
+<div class="w3-container">
+    <p>Dont have an account? <a href="/registration">Registration</a>.</p>
+</div>
 </body>
 </html>
