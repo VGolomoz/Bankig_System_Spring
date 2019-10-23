@@ -29,34 +29,26 @@
         <table class="w3-table w3-striped w3-bordered w3-border">
             <thead class="w3-teal">
             <th style="width:50%">Account Information</th><th></th></thead>
-            <tr><td>Balance</td><td><p th:text="${client.email}"/></td></tr>
+            <tr><td>Balance</td><td><p th:text="${client.clientAccount.balance}"/></td></tr>
+            <tr><td>Currency</td><td><p th:text="${client.clientAccount.currency}"/></td></tr>
+            <tr><td>Validity</td><td><p th:text="${client.clientAccount.validity}"/></td></tr>
+            <p th:if="${client.clientAccount.deposit}">
+                <tr><td>Deposit Account</td><td>Opened</td></tr>
+            </p>
+            <p th:unless="${client.clientAccount.credit}">
+                <tr><td>Deposit Account</td><td>Closed</td></tr>
+            </p>
+            <p th:if="${client.clientAccount.credit}">
+                <tr><td>Credit Account</td><td>Opened</td></tr>
+            </p>
+            <p th:unless="${client.clientAccount.credit}">
+                <tr><td>Credit Account</td><td>Closed</td></tr>
+            </p>
         </table>
-    </div>
-</div>
 
+                </div>
+            </div>
 
-<!--            -->
-<!--        <% UserAccount userAccount = (UserAccount) request.getSession().getAttribute("userAccount");-->
-<!--        ContactDetails contactDetails = (ContactDetails) request.getSession().getAttribute("contactDetails");-->
-<!--        String deposit;-->
-<!--        String credit;-->
-<!--        if (userAccount.getDeposit()) deposit = "Opened";-->
-<!--        else deposit = "Not Opened";-->
-<!--        if (userAccount.getCredit()) credit = "Opened";-->
-<!--        else credit = "Not Opened";-->
-<!--        %>-->
-<!--        <h2><%out.println("Hello " + "'"+ contactDetails.getName()+ "'");%></h2>-->
-<!--        <%out.println (" <table class=\"w3-table w3-striped w3-bordered w3-border\"> " +-->
-<!--        " <thead class=\"w3-teal\"> " +-->
-<!--    " <th style=\"width:50%\"> " + "Account Information" +-->
-<!--        " </th><th></th></thead> " +-->
-<!--        " <tr><td>Balance</td><td>"+userAccount.getBalance()+"</td></tr> " +-->
-<!--        " <tr><td>Currency</td><td>"+userAccount.getCurrency()+"</td></tr> " +-->
-<!--        " <tr><td>Validity</td><td>"+userAccount.getValidity()+"</td></tr> " +-->
-<!--        " <tr><td>Deposit Account</td><td>"+deposit+"</td></tr> " +-->
-<!--        " <tr><td>Credit Account</td><td>"+credit+"</td></tr></table>");-->
-<!--        %>-->
-<!--        <h2></h2>-->
 <!--        <% out.println(" <table class=\"w3-table w3-striped w3-bordered w3-border\"> " +-->
 <!--        " <thead class=\"w3-teal\"><th style=\"width:50%\">Contact Details</th><th></th></thead> " +-->
 <!--        " <tr><td>Name</td><td>"+contactDetails.getName()+"</td></tr> " +-->

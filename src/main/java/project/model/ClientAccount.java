@@ -12,7 +12,7 @@ public class ClientAccount {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private Double balance;
 
     @Column

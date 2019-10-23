@@ -1,22 +1,24 @@
 package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.model.Client;
 import project.repository.ClientRepository;
+import project.service.ClientService;
 import project.util.UserRole;
 
 @Controller
 public class UserController {
 
     @Autowired
-    private ClientRepository userRepository;
+    private ClientService clientService;
 
-//    public UserController(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
 
     //    @GetMapping("/")
 //    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
@@ -38,22 +40,11 @@ public class UserController {
 //        return "Saved";
 //    }
 
-    @GetMapping(path = "/all")
-    public @ResponseBody
-    Iterable<Client> getAllUsers() {
-        // This returns a JSON or XML with the users
-        return userRepository.findAll();
-    }
 
     @GetMapping("/client")
-    public String add(Model model) {
-        Client c = new Client();
-        c.setEmail("myEmail");
-        c.setPassword("myPassword");
-        c.setRole(UserRole.CLIENT);
-        System.out.println(c);
-        userRepository.save(c);
-        model.addAttribute("client", c);
+    public String getClient(Model model, Authentication authentication) {
+        Client dbClient = clientService.findByEmail(authentication.getName());
+        model.addAttribute("client", dbClient);
         return "client";
     }
 }

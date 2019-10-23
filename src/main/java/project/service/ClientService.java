@@ -30,7 +30,7 @@ public class ClientService {
 
         client.setPassword(passHash);
         client.setRole(UserRole.CLIENT);
-        clientAccount.setBalance(0.0);
+        clientAccount.setBalance(15.2);
         clientAccount.setValidity(new Date());
         clientAccount.setClientDetails(clientDetails);
         clientAccount.setClient(client);
