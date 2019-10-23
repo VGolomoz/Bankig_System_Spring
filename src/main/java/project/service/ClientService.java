@@ -9,6 +9,7 @@ import project.model.ClientDetails;
 import project.repository.ClientRepository;
 import project.util.UserRole;
 
+import java.util.Calendar;
 import java.util.Date;
 
 @Service
@@ -25,16 +26,22 @@ public class ClientService {
     @Transactional
     public boolean addClient(String email, String passHash, Client client, ClientDetails clientDetails, ClientAccount clientAccount) {
 
-        if (clientRepository.existsByEmail(email))
-            return false;
+        Date currentDate = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.YEAR, 1);
+        Date validityDate = c.getTime();
 
-        client.setPassword(passHash);
-        client.setRole(UserRole.CLIENT);
-        clientAccount.setBalance(15.2);
-        clientAccount.setValidity(new Date());
+        if (clientRepository.existsByEmail(email)) return false;
+
+        clientAccount.setBalance(0.0);
+        clientAccount.setValidity(validityDate);
         clientAccount.setClientDetails(clientDetails);
         clientAccount.setClient(client);
+        clientDetails.setClientAccount(clientAccount);
         client.setClientAccount(clientAccount);
+        client.setPassword(passHash);
+        client.setRole(UserRole.CLIENT);
         clientRepository.save(client);
 
         return true;
