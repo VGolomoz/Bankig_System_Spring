@@ -2,6 +2,7 @@ package project.model;
 
 import project.util.Currency;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class ClientAccount {
     private Credit credit;
 
     @OneToMany(mappedBy = "clientAccount")
-    private List<Operation> operations;
+    private List<Operation> operations = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -110,6 +111,7 @@ public class ClientAccount {
 
     public void addOperations(Operation operation) {
         operations.add(operation);
+        operation.setClientAccount(this);
     }
 
     public ClientAccount() {
