@@ -24,6 +24,11 @@ public class ClientService {
     }
 
     @Transactional
+    public Client updateClient(Client client) {
+        return clientRepository.save(client);
+    }
+
+    @Transactional
     public boolean addClient(String email, String passHash, Client client, ClientDetails clientDetails, ClientAccount clientAccount) {
 
         Date currentDate = new Date();

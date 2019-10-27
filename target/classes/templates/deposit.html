@@ -1,5 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<title>Client Page</title>
+<title>Deposit Page</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -24,7 +24,7 @@
             <a href="#" class="w3-bar-item w3-button w3-border w3-light-grey w3-right">UA</a>
             <a href="#" class="w3-bar-item w3-button w3-border w3-light-grey w3-right">EN</a>
             <a href="#" class="w3-bar-item w3-button w3-border w3-light-grey w3-right">RU</a>
-            <a href="/deposit" class="w3-bar-item w3-button w3-border w3-light-grey">Deposit Account</a>
+            <a href="/deposit" class="w3-bar-item w3-button w3-border w3-light-grey w3-disabled">Deposit Account</a>
             <a href="/open_credit" class="w3-bar-item w3-button w3-border w3-light-grey">Credit Account</a>
             <a href="/operations" class="w3-bar-item w3-button w3-border w3-light-grey">My Operations</a>
         </form>
@@ -33,78 +33,26 @@
 <div class="w3-row-padding w3-padding-64 w3-container">
     <div class="w3-third">
         <img class="w3-round  w3-animate-top" src="https://www.w3schools.com/w3images/avatar3.png" style="width:20%;">
-<!--        <h1 th:inline="text">Hello, [[${#httpServletRequest.remoteUser}]]!</h1>-->
         <h3 th:inline="text">Hello, [[${client.clientAccount.clientDetails.name}]]!</h3>
         <table class="w3-table w3-striped w3-bordered w3-border">
             <thead class="w3-teal">
-            <th style="width:50%">Account Information</th>
+            <th style="width:50%">Deposit Account Information</th>
             <th></th>
             </thead>
             <tr>
                 <td>Balance</td>
-                <td><p th:text="${client.clientAccount.balance}"/></td>
+                <td><p th:text="${deposit.balance}"/></td>
             </tr>
             <tr>
                 <td>Currency</td>
-                <td><p th:text="${client.clientAccount.currency}"/></td>
+                <td><p th:text="${deposit.currency}"/></td>
             </tr>
             <tr>
-                <td>Validity</td>
-                <td><p th:text="${client.clientAccount.validity}"/></td>
+                <td>Term</td>
+                <td><p th:text="${deposit.term}"/></td>
             </tr>
-            <p th:if="${client.clientAccount.deposit}">
-                <tr>
-                    <td>Deposit Account</td>
-                    <td>Opened</td>
-                </tr>
-            </p>
-            <p th:unless="${client.clientAccount.deposit}">
-                <tr>
-                    <td>Deposit Account</td>
-                    <td>Closed</td>
-                </tr>
-            </p>
-            <p th:if="${client.clientAccount.credit}">
-                <tr>
-                    <td>Credit Account</td>
-                    <td>Opened</td>
-                </tr>
-            </p>
-            <p th:unless="${client.clientAccount.credit}">
-                <tr>
-                    <td>Credit Account</td>
-                    <td>Closed</td>
-                </tr>
-            </p>
+            <tr><td>Rate</td><td th:inline="text">[[${deposit.rate}]] % per annum</td></tr>
         </table>
-
-        <table class="w3-table w3-striped w3-bordered w3-border">
-            <thead class="w3-teal">
-            <th style="width:50%">Contact Details</th>
-            <th></th>
-            </thead>
-            <tr>
-                <td>Name</td>
-                <td><p th:text="${client.clientAccount.clientDetails.name}"/></td>
-            </tr>
-            <tr>
-                <td>Surname</td>
-                <td><p th:text="${client.clientAccount.clientDetails.surname}"/></td>
-            </tr>
-            <tr>
-                <td>Mobile Phone</td>
-                <td><p th:text="${client.clientAccount.clientDetails.mobilePhone}"/></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><p th:text="${client.clientAccount.clientDetails.email}"/></td>
-            </tr>
-            <tr>
-                <td>Birthday</td>
-                <td><p th:text="${client.clientAccount.clientDetails.birthday}"/></td>
-            </tr>
-        </table>
-
     </div>
 </div>
 

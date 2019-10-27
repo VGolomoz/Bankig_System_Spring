@@ -26,15 +26,15 @@ public class ClientAccount {
     @OneToOne(mappedBy = "clientAccount")
     private Client client;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn (name="clientDetails_id")
     private ClientDetails clientDetails;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn (name="deposit_id")
     private Deposit deposit;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn (name="credit_id")
     private Credit credit;
 

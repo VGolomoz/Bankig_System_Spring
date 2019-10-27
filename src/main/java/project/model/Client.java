@@ -25,7 +25,7 @@ public class Client {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn (name="clientAccount_id")
     private ClientAccount clientAccount;
 
