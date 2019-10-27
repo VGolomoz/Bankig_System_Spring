@@ -27,6 +27,9 @@ public class Credit {
     @Column(nullable = false)
     private Double accruedInterest;
 
+    @Column
+    private Boolean decision;
+
     @OneToOne(mappedBy = "credit")
     private ClientAccount clientAccount;
 
@@ -76,6 +79,14 @@ public class Credit {
 
     public void setAccruedInterest(Double accruedInterest) {
         this.accruedInterest = accruedInterest;
+    }
+
+    public Boolean getDecision() {
+        return decision;
+    }
+
+    public void setDecision(Boolean decision) {
+        this.decision = decision;
     }
 
     public ClientAccount getClientAccount() {

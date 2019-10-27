@@ -25,7 +25,7 @@
             <a href="#" class="w3-bar-item w3-button w3-border w3-light-grey w3-right">EN</a>
             <a href="#" class="w3-bar-item w3-button w3-border w3-light-grey w3-right">RU</a>
             <a href="/deposit" class="w3-bar-item w3-button w3-border w3-light-grey">Deposit Account</a>
-            <a href="/open_credit" class="w3-bar-item w3-button w3-border w3-light-grey">Credit Account</a>
+            <a href="/credit" class="w3-bar-item w3-button w3-border w3-light-grey">Credit Account</a>
             <a href="/operations" class="w3-bar-item w3-button w3-border w3-light-grey">My Operations</a>
         </form>
     </div>
@@ -33,7 +33,6 @@
 <div class="w3-row-padding w3-padding-64 w3-container">
     <div class="w3-third">
         <img class="w3-round  w3-animate-top" src="https://www.w3schools.com/w3images/avatar3.png" style="width:20%;">
-<!--        <h1 th:inline="text">Hello, [[${#httpServletRequest.remoteUser}]]!</h1>-->
         <h3 th:inline="text">Hello, [[${client.clientAccount.clientDetails.name}]]!</h3>
         <table class="w3-table w3-striped w3-bordered w3-border">
             <thead class="w3-teal">
@@ -52,30 +51,24 @@
                 <td>Validity</td>
                 <td><p th:text="${client.clientAccount.validity}"/></td>
             </tr>
-            <p th:if="${client.clientAccount.deposit}">
-                <tr>
-                    <td>Deposit Account</td>
-                    <td>Opened</td>
-                </tr>
-            </p>
-            <p th:unless="${client.clientAccount.deposit}">
-                <tr>
-                    <td>Deposit Account</td>
-                    <td>Closed</td>
-                </tr>
-            </p>
-            <p th:if="${client.clientAccount.credit}">
-                <tr>
-                    <td>Credit Account</td>
-                    <td>Opened</td>
-                </tr>
-            </p>
-            <p th:unless="${client.clientAccount.credit}">
-                <tr>
-                    <td>Credit Account</td>
-                    <td>Closed</td>
-                </tr>
-            </p>
+            <tr>
+                <td>Deposit Account</td>
+                <td th:if="${client.clientAccount.deposit}">
+                    Opened
+                </td>
+                <td th:unless="${client.clientAccount.deposit}">
+                    Closed
+                </td>
+            </tr>
+            <tr>
+                <td>Credit Account</td>
+                <td th:if="${client.clientAccount.credit != null and client.clientAccount.credit.decision == true}">
+                    Opened
+                </td>
+                <td th:unless="${client.clientAccount.credit != null and client.clientAccount.credit.decision == true}">
+                    Closed
+                </td>
+            </tr>
         </table>
 
         <table class="w3-table w3-striped w3-bordered w3-border">

@@ -29,8 +29,9 @@ public class CreditController {
     public String openCreditAccount(Authentication authentication, Model model) {
 
         dbClient = clientService.findByEmail(authentication.getName());
-        if (dbClient.getClientAccount().getCredit() != null) {
-            model.addAttribute("credit", dbClient.getClientAccount().getCredit());
+        Credit credit = dbClient.getClientAccount().getCredit();
+        if (credit != null) {
+            model.addAttribute("credit", credit);
             model.addAttribute("client", dbClient);
             return "credit";
         }
@@ -39,9 +40,10 @@ public class CreditController {
 
     @PostMapping
     public String createCreditAccount(@RequestParam String currency,
+                                      @RequestParam String limit,
                                       @RequestParam String rate,
                                       Credit credit, Model model) {
-        creditService.addCredit(currency, rate, dbClient.getClientAccount(), credit);
+        creditService.addCredit(currency, limit, rate, dbClient.getClientAccount(), credit);
         clientService.updateClient(dbClient);
         return "redirect:/credit";
 

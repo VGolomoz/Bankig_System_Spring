@@ -25,6 +25,5 @@ public class CreditService {
         credit.setClientAccount(clientAccount);
         clientAccount.setCredit(credit);
         creditRepository.save(credit);
-
     }
 }
