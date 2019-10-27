@@ -2,17 +2,18 @@ package project.model;
 
 import project.util.Currency;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class UserAccount {
+public class ClientAccount {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private Double balance;
 
     @Column
@@ -22,23 +23,23 @@ public class UserAccount {
     @Column(nullable = false)
     private Date validity;
 
-    @OneToOne(mappedBy = "userAccount")
+    @OneToOne(mappedBy = "clientAccount")
     private Client client;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn (name="userDetails_id")
-    private UserDetails userDetails;
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn (name="clientDetails_id")
+    private ClientDetails clientDetails;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn (name="deposit_id")
     private Deposit deposit;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn (name="credit_id")
     private Credit credit;
 
-    @OneToMany(mappedBy = "userAccount")
-    private List<Operation> operations;
+    @OneToMany(mappedBy = "clientAccount")
+    private List<Operation> operations = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -80,12 +81,12 @@ public class UserAccount {
         this.client = client;
     }
 
-    public UserDetails getUserDetails() {
-        return userDetails;
+    public ClientDetails getClientDetails() {
+        return clientDetails;
     }
 
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
+    public void setClientDetails(ClientDetails clientDetails) {
+        this.clientDetails = clientDetails;
     }
 
     public Deposit getDeposit() {
@@ -110,8 +111,9 @@ public class UserAccount {
 
     public void addOperations(Operation operation) {
         operations.add(operation);
+        operation.setClientAccount(this);
     }
 
-    public UserAccount() {
+    public ClientAccount() {
     }
 }

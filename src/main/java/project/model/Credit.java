@@ -3,7 +3,6 @@ package project.model;
 import project.util.Currency;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 public class Credit {
@@ -29,7 +28,7 @@ public class Credit {
     private Double accruedInterest;
 
     @OneToOne(mappedBy = "credit")
-    private UserAccount userAccount;
+    private ClientAccount clientAccount;
 
     public Long getId() {
         return id;
@@ -79,12 +78,12 @@ public class Credit {
         this.accruedInterest = accruedInterest;
     }
 
-    public UserAccount getUserAccount() {
-        return userAccount;
+    public ClientAccount getClientAccount() {
+        return clientAccount;
     }
 
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public void setClientAccount(ClientAccount clientAccount) {
+        this.clientAccount = clientAccount;
     }
 
     public Credit() {

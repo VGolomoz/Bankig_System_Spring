@@ -11,8 +11,8 @@ public abstract class Operation {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "userAccount_id")
-    private UserAccount userAccount;
+    @JoinColumn(name = "clientAccount_id")
+    private ClientAccount clientAccount;
 
     public Long getId() {
         return id;
@@ -22,12 +22,12 @@ public abstract class Operation {
         this.id = id;
     }
 
-    public UserAccount getUserAccount() {
-        return userAccount;
+    public ClientAccount getClientAccount() {
+        return clientAccount;
     }
 
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
+    public void setClientAccount(ClientAccount clientAccount) {
+        this.clientAccount = clientAccount;
     }
 
     public Operation() {
