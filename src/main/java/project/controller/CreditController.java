@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.model.Client;
-import project.model.Deposit;
+import project.model.Credit;
 import project.service.ClientService;
-import project.service.DepositService;
+import project.service.CreditService;
 
 @Controller
-@RequestMapping("/deposit")
-public class DepositController {
+@RequestMapping("/credit")
+public class CreditController {
 
     @Autowired
-    DepositService depositService;
+    CreditService creditService;
 
     @Autowired
     ClientService clientService;
@@ -26,24 +26,24 @@ public class DepositController {
     private Client dbClient;
 
     @GetMapping
-    public String openDepositAccount(Authentication authentication, Model model) {
+    public String openCreditAccount(Authentication authentication, Model model) {
 
         dbClient = clientService.findByEmail(authentication.getName());
-        if (dbClient.getClientAccount().getDeposit() != null) {
-            model.addAttribute("deposit", dbClient.getClientAccount().getDeposit());
+        if (dbClient.getClientAccount().getCredit() != null) {
+            model.addAttribute("credit", dbClient.getClientAccount().getCredit());
             model.addAttribute("client", dbClient);
-            return "deposit";
+            return "credit";
         }
-        else return "open_deposit";
+        else return "open_credit";
     }
 
     @PostMapping
-    public String createDepositAccount(@RequestParam String currency,
-                                       @RequestParam String rate,
-                                       Deposit deposit, Model model) {
-        depositService.addDeposit(currency, rate, dbClient.getClientAccount(), deposit);
+    public String createCreditAccount(@RequestParam String currency,
+                                      @RequestParam String rate,
+                                      Credit credit, Model model) {
+        creditService.addCredit(currency, rate, dbClient.getClientAccount(), credit);
         clientService.updateClient(dbClient);
-        return "redirect:/deposit";
+        return "redirect:/credit";
 
     }
 }
