@@ -14,7 +14,7 @@ import project.service.ClientService;
 import project.service.CreditService;
 
 @Controller
-@RequestMapping("/credit")
+@RequestMapping("credit")
 public class CreditController {
 
     @Autowired

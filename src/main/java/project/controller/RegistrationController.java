@@ -6,17 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import project.model.Client;
 import project.model.ClientAccount;
 import project.model.ClientDetails;
-import project.repository.ClientRepository;
 import project.service.ClientService;
-import project.util.UserRole;
-
-import java.util.Date;
 
 @Controller
+@RequestMapping("registration")
 public class RegistrationController {
 
     @Autowired
@@ -26,13 +24,13 @@ public class RegistrationController {
     private PasswordEncoder passwordEncoder;
 
 
-    @GetMapping("/registration")
+    @GetMapping
     public String registration(){
         return "registration";
 
     }
 
-    @PostMapping("registration")
+    @PostMapping
     public String addClient(@RequestParam String email,
                             @RequestParam String password,
                             Client client, ClientDetails clientDetails, ClientAccount clientAccount, Model model) {

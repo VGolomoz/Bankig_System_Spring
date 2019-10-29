@@ -14,7 +14,7 @@ import project.service.ClientService;
 import project.service.DepositService;
 
 @Controller
-@RequestMapping("/deposit")
+@RequestMapping("deposit")
 public class DepositController {
 
     @Autowired
